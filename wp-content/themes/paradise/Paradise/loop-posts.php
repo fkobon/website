@@ -24,7 +24,7 @@
 					<!-- End Post Title -->
 					<?php if(has_post_thumbnail()): ?>
 					<!-- Post Thumbnail -->
-					<div class="post_thumb"><?php the_post_thumbnail('blog', array('title' => false, 'class' => 'pic')); ?></div>
+					<a href="<?php the_permalink(); ?>" class="post_thumb"><?php the_post_thumbnail('blog', array('title' => false, 'class' => 'pic')); ?></a>
 					<!-- End Post Thumbnail -->
 					<?php endif; ?>
 					<!-- Post Excerpt -->
