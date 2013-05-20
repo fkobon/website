@@ -33,7 +33,6 @@
 	?></title>
 
 	<?php wp_enqueue_style("css_dark")	?>
-	<?php wp_enqueue_style('css_ddsmoothmenu'); ?>
 	<?php wp_enqueue_style('css_tipsy'); ?>
 	<?php wp_enqueue_style('css_custom'); ?>
 
@@ -42,9 +41,6 @@
 	<?php if (get_option('show_switcher')): ?>
 		<?php wp_enqueue_script('js_style_switcher'); ?>
 	<?php endif; ?>
-	<?php wp_enqueue_script('js_watermarkinput'); ?>
-	<?php wp_enqueue_script('js_ddsmoothmenu'); ?>
-	<?php wp_enqueue_script('jquery-color'); ?>
 	<?php wp_enqueue_script('jquery-ui-tabs'); ?>
 	<?php wp_enqueue_script('js_tipsy'); ?>
 	<?php wp_enqueue_script('js_localscrol'); ?>

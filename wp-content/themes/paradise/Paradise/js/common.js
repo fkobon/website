@@ -1,15 +1,19 @@
 // Initial of dropdown menu
-ddsmoothmenu.init({
-	mainmenuid: "menu", //menu DIV id
-	orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
-	classname: 'ddsmoothmenu', //class added to menu's outer DIV
-	//customtheme: ["#1c5a80", "#18374a"],
-	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
-})
 
 jQuery(function($){
-// watermark plugin
-	$("#s").Watermark("Search");
+// watermark
+	var $s = $('#s');
+	if ($s.length) {
+		var t = 'Search';
+		$s.attr('title', t);
+		if ($s.val() == '') $s.val(t);
+		$s.focus(function() {
+			if ($s.val() == t) $s.val('');
+		})
+		.blur (function() {
+			if ($s.val() == '') $s.val(t);
+		})
+	}
 // tipsy
 	$('.social a').tipsy(
 	{
@@ -20,22 +24,7 @@ jQuery(function($){
 });
 
 jQuery(document).ready(function() {
-// image fading plugin
-	jQuery(".pic, .avatar, .flickr img").css({
-		backgroundColor: "#fff",
-		borderColor: "#D5D5D5"
-	});
-	jQuery(".pic, .avatar, .flickr img").hover(function() {
-		jQuery(this).stop().animate({
-			backgroundColor: "#666",
-			borderColor: "#333"
-		}, 300);
-	},function() {
-		jQuery(this).stop().animate({
-			backgroundColor: "#fff",
-			borderColor: "#D5D5D5"
-		}, 500);
-	});
+
 // tabs
 	jQuery("#tabs").tabs({ fx: { height: 'toggle', opacity: 'toggle' } });
 // code

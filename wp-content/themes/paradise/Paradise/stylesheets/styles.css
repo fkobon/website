@@ -2076,3 +2076,8 @@ ol.ordered li p	{
 				background:#474c52;
 				border:1px solid #2b3035;
 				}
+
+
+
+/*** changes by XBMC ****/
+#s:focus {color:#999 !important}

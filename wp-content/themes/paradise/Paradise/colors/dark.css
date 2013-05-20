@@ -140,10 +140,16 @@ a:hover.comment-reply-link	{
 				}
 
 /* ========== STYLED ELEMENTS ========== */
-
-img:hover.pic	{
+.pic, .avatar, .flickr img {
+	-webkit-transition:background-color 0.2s;
+	-moz-transition:background-color 0.2s;
+	-o-transition:background-color 0.2s;
+	transition:background-color 0.2s;
+}
+a:hover img.pic, a:hover img.avatar, .flickr:hover img	{
 				background:#363a3e;
 				border:1px solid #0579af;
+
 				}
 				
 /* ---- Pagination ---- */
