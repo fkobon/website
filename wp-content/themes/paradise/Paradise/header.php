@@ -32,7 +32,7 @@
 
 	?></title>
 
-	<?php enqueue_color_styles();	?>
+	<?php wp_enqueue_style("css_dark")	?>
 	<?php wp_enqueue_style('css_ddsmoothmenu'); ?>
 	<?php wp_enqueue_style('css_tipsy'); ?>
 	<?php wp_enqueue_style('css_custom'); ?>
