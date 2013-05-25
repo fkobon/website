@@ -120,7 +120,7 @@ function theme_slider_render() {
 	}
 	$loop = new WP_Query($args);
 	if ($loop->have_posts()):
-		$_theme_sliders[get_option('slider_type')]->render(&$loop);
+		$_theme_sliders[get_option('slider_type')]->render($loop);
 	endif;
 }
 
