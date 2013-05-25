@@ -33,12 +33,6 @@ define('WP_DEBUG', false);
 if ( !defined('ABSPATH') )
         define('ABSPATH', dirname(__FILE__) . '/');
 
-/* WP SuperCache settings */
-define( 'WP_CACHE', true );	
-define( 'WP_CACHE', __FILE__.'/wp-content/cache/' ); 
-define( 'WPCACHEHOME', __FILE__.'/opt/site-data/wordpress/cache/' ); 
-		
-		
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
 ?>
