@@ -27,6 +27,9 @@ define('WPLANG', '');
  */
 define('WP_DEBUG', false);
 
+define('WP_CACHE', true); //Added by WP-Cache Manager
+define( 'WPCACHEHOME', '/var/www/sites/website/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
+
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */
