@@ -1,12 +1,15 @@
 <?php
 
 /**
- * Don't reveal any of the credentials or other
- * sensible configurations in GIT!!!!
- * Thus include 'em from an external file but
- * keep the dummy config.php for Wordpress
+ * This sets the context the application is running in.
+ * It allows to change certain behavior depending on context.
+ * The currently supported contexts are:
+ *
+ * development		Used in the development environment
+ * production		Used on the live website
  */
-include('/etc/xbmc/wordpress/wp-config-private.php');
+$context = @is_file(dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'wp-config-development.php') ? 'development' : 'production';
+define('CONTEXT', $context);
 
 /**
  * WordPress Localized Language, defaults to English.
@@ -29,6 +32,19 @@ define('WP_DEBUG', false);
 
 define('WP_CACHE', true); //Added by WP-Cache Manager
 define( 'WPCACHEHOME', '/var/www/sites/website/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
+
+
+/**
+ * Don't reveal any of the credentials or other
+ * sensible configurations in GIT!!!!
+ * Thus include 'em from an external file but
+ * keep the dummy config.php for Wordpress
+ */
+if (CONTEXT == 'development') {
+	require_once('wp-config-development.php');
+} else {
+	require_once('/etc/xbmc/wordpress/wp-config-private.php');
+}
 
 /* That's all, stop editing! Happy blogging. */
 
