@@ -1,0 +1,51 @@
+diff --git a/wp-content/plugins/donate-plus/paypal.php b/wp-content/plugins/donate-plus/paypal.php
+index 0f6fc16e2782f8eb65e302f17e758c8090902fd3..4d1e5519bfb87a7a2b054f56658f744e1b23a68e 100644
+--- a/wp-content/plugins/donate-plus/paypal.php
++++ b/wp-content/plugins/donate-plus/paypal.php
+@@ -163,7 +163,7 @@ if (!$port && !$error){
+ 	$option_name1 			= $_POST['option_name1'];		//name
+ 	$option_name2 			= $_POST['option_name2'];
+ 	$option_selection1 		= $_POST['option_selection1'];	//email
+-	$option_selection2 		= $_POST['option_selection2'];	//comment
++	$option_selection2 		= $_POST['option_selection2'];	//comment now changed to name
+ 	$tax 					= $_POST['tax'];
+ 	#Website Payment Pro and Other IPN Variables
+ 	$auth_id 				= $_POST['auth_id'];
+@@ -241,9 +241,13 @@ if (!$port && !$error){
+ 		 6. We have included an insert to database for table paypal_ipn
+ 		 */
+ 		$split = explode(':', $item_number);
+-		$display = $split[0];
++		if (strpos($option_selection1,'don') !== false) {
++		    $display = 0;
++		} else {
++		    $display = 1;
++		}
+ 		$uID = $split[1];
+-		$url = 'http://'.str_replace('http://','',$option_name2);
++		$url = 'http://xbmc.org';
+ 
+ 		if(!$mc_gross)$mc_gross = $payment_gross;
+ 		$table_name = $wpdb->prefix."donations";
+@@ -262,7 +266,7 @@ if (!$port && !$error){
+ 				$wpdb->prepare("INSERT INTO $table_name
+ 				( name, email, url, comment, display, amount, currency, date, user_id, status, txn_id )
+ 				VALUES ( %s, %s, %s, %s, %d, %s, %s, %s, %d, %s, %s )", 
+-			    $option_name1, $option_selection1, $url, strip_tags($option_selection2), $display, $mc_gross, $mc_currency, date('Y-m-d H:i:s'), $uID, $tmp_payment_status, $txn_id )
++			    $option_selection2, $payer_email, $url, strip_tags($memo), $display, $mc_gross, $mc_currency, date('Y-m-d H:i:s'), $uID, $tmp_payment_status, $txn_id )
+ 		    );
+ 			//send payer thank you email about where to download
+ 			global $currency;
+@@ -276,10 +280,10 @@ if (!$port && !$error){
+ 			//$headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
+ 			$headers .= 'Content-type: text/html; charset=utf-8'."\r\n";
+ 			$headers .= 'From: '.$dplus['ty_name'].' <'.$dplus['ty_email'].'>'."\r\n";
+-			wp_mail($option_selection1, $subject, $payer_msg, $headers);
++			//wp_mail($option_selection1, $subject, $payer_msg, $headers);
+ 			//wp_mail($notify_email, 'New Donation Recieved!', "Donation from $option_name1 for $payment_amount");
+ 			//echo $postquery;
+-			if( $email_IPN_results ) send_mail($send_mail_to,$sysname." [PIN - Completed]","\n Verified IPN Transaction [Completed] \n \n$ipnreport\n","",__LINE__);
++			//if( $email_IPN_results ) send_mail($send_mail_to,$sysname." [PIN - Completed]","\n Verified IPN Transaction [Completed] \n \n$ipnreport\n","",__LINE__);
+ 		}else{
+ 			//not "Completed"
+ 			//tar bort nedan, annars trilalr det in 10 mail per donation
