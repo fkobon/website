@@ -1,0 +1,31 @@
+diff --git a/wp-content/plugins/donate-plus/donate-plus.php b/wp-content/plugins/donate-plus/donate-plus.php
+index 8f7aa9882dbd161e4b505d491d0639d7c6f9597e..4c620bdc780ef40ecc43131cbd5dc203fa48e17c 100644
+--- a/wp-content/plugins/donate-plus/donate-plus.php
++++ b/wp-content/plugins/donate-plus/donate-plus.php
+@@ -364,17 +364,22 @@ if( !class_exists('DonatePlus') ):
+ 			$donors = $wpdb->get_results("SELECT * FROM $table WHERE status='Completed' AND display!=0 $limit");
+ 			//print_r($donors);
+ 			$output .= '<div id="donorwall">';
++			$bgcolor = array(0=>"white",1=>"#e5e5e5"); //background color for donor table
+ 			if( $donors && $title )
+-				$output .= '<h2>'.$title.'</h2>';
++				$output .= '<h2>'.$title.'</h2><br />';
++				$output .= '<table border=1><thead style="background-color:#60676F;"><tr><th style="padding:5px;color:white;width:20%;">Date</th><th style="color:white;width:20%;">Forum Name</th><th style="color:white;width:20%;">Donation</th><th style="color:white;width:40%">Comment</th></tr></thead>';
++				$output .= '<tfoot style="background-color:#60676F;"><tr><th style="padding:5px;color:white">Date</th><th style="color:white;">Forum Name</th><th style="color:white;">Donation</th><th style="color:white;">Comment</th></tr></tfoot><tbody>';
+ 			foreach( $donors as $donor ):
+ 				$symbol = $currency[$donor->currency]['symbol'];
+-				if($donor->display == 1) $donation = '(<span class="amount">'.$symbol.number_format($donor->amount, 2, '.', ',').' <small class="currency">'.$donor->currency.'</small></span>)';
++				if($donor->display == 1) $donation = '<span class="amount">'.$symbol.number_format($donor->amount, 2, '.', ',').' <small class="currency">'.$donor->currency.'</small></span>';
+ 				else $donation = '';
+ 				
+ 				$date = strtotime($donor->date);
+-				$datetime = date('M j, Y \a\t g:i a', $date);
+-				$output .= '<div class="donorbox"><p><small class="date time"><a href="#donor-'.$donor->ID.'">'.$datetime.'</a></small><br /><cite><strong><a href="'.$donor->url.'" rel="external" class="name url">'.$donor->name.'</a></strong> '.$donation.'</cite> '.__('Said:','dplus').'<blockquote class="comment">'.nl2br($donor->comment).'</blockquote></p></div>';
++				$datetime = date('Y M j', $date);
++				$output .= '<tr bgcolor="'.$bgcolor[$a].'"><td style="padding-left:5px;">'.$datetime.'</td><td>'.$donor->name.'</td><td>'.$donation.'</td><td>'.nl2br($donor->comment).'</td></tr>';
++				$a = !$a; //flipping background color bit
+ 			endforeach;
++			$output .= '</tbody></table>';
+ 			$output .= '</div>';
+ 			return $output;
+ 		}
