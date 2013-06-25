@@ -1,0 +1,37 @@
+From 696ffb320a8e745348d484ec6549e5d0f7606e87 Mon Sep 17 00:00:00 2001
+From: Franz Koch <franz.koch@elements-net.de>
+Date: Mon, 20 May 2013 16:52:49 +0200
+Subject: [PATCH 4/5] [Template] get rid of CUFON (disable in theme settings)
+ and use webfonts instead
+
+---
+ wp-content/themes/paradise/Paradise/header.php             | 1 +
+ wp-content/themes/paradise/Paradise/stylesheets/styles.css | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/wp-content/themes/paradise/Paradise/header.php b/wp-content/themes/paradise/Paradise/header.php
+index c0c47db..e732ff4 100644
+--- a/wp-content/themes/paradise/Paradise/header.php
++++ b/wp-content/themes/paradise/Paradise/header.php
+@@ -32,6 +32,7 @@
+ 
+ 	?></title>
+ 
++	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+ 	<?php wp_enqueue_style("css_dark")	?>
+ 	<?php wp_enqueue_style('css_tipsy'); ?>
+ 	<?php wp_enqueue_style('css_custom'); ?>
+diff --git a/wp-content/themes/paradise/Paradise/stylesheets/styles.css b/wp-content/themes/paradise/Paradise/stylesheets/styles.css
+index ade251f..2267829 100644
+--- a/wp-content/themes/paradise/Paradise/stylesheets/styles.css
++++ b/wp-content/themes/paradise/Paradise/stylesheets/styles.css
+@@ -2080,5 +2080,6 @@ ol.ordered li p	{
+ 
+ 
+ /*** changes by XBMC ****/
++h1, h2, h3, h4, h5, h6, .big_btn, a.big_btn, #f_sidebar h3, .error404, .s3sliderImage .title { font-family: 'MgOpen Modata', 'Source Sans Pro', 'Arial Narrow', Arial, Helvetica, sans-serif;}
+ #s:focus {color:#999 !important}
+ .post_thumb		{display:block; overflow:hidden;}
+-- 
+1.8.0.msysgit.0
+

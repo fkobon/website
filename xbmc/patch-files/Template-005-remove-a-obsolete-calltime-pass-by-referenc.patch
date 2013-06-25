@@ -1,0 +1,27 @@
+From d236357c2b815c38279224694b8c26a149d6afd9 Mon Sep 17 00:00:00 2001
+From: Franz Koch <franz.koch@elements-net.de>
+Date: Sat, 25 May 2013 16:22:51 +0200
+Subject: [PATCH 5/5] [Template] remove a obsolete "calltime pass by
+ reference" error. This php feature is obsolete since
+ ages and triggers an runtime error on php 5.4
+
+---
+ wp-content/themes/paradise/Paradise/functions/custom_types/sliders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/wp-content/themes/paradise/Paradise/functions/custom_types/sliders.php b/wp-content/themes/paradise/Paradise/functions/custom_types/sliders.php
+index 8b9d67f..64f1764 100644
+--- a/wp-content/themes/paradise/Paradise/functions/custom_types/sliders.php
++++ b/wp-content/themes/paradise/Paradise/functions/custom_types/sliders.php
+@@ -120,7 +120,7 @@ function theme_slider_render() {
+ 	}
+ 	$loop = new WP_Query($args);
+ 	if ($loop->have_posts()):
+-		$_theme_sliders[get_option('slider_type')]->render(&$loop);
++		$_theme_sliders[get_option('slider_type')]->render($loop);
+ 	endif;
+ }
+ 
+-- 
+1.8.0.msysgit.0
+

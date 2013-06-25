@@ -1,0 +1,131 @@
+From c032a0eee08e85d5523a95b2dc35f71047e29a7f Mon Sep 17 00:00:00 2001
+From: Franz Koch <franz.koch@elements-net.de>
+Date: Mon, 20 May 2013 17:06:11 +0200
+Subject: [PATCH 2/5] [Template] don't include useless JS files and reduce
+ server requests that way
+
+---
+ .../themes/paradise/Paradise/colors/dark.css       | 10 ++++--
+ wp-content/themes/paradise/Paradise/header.php     |  4 ---
+ wp-content/themes/paradise/Paradise/js/common.js   | 39 ++++++++--------------
+ .../paradise/Paradise/stylesheets/styles.css       |  5 +++
+ 4 files changed, 27 insertions(+), 31 deletions(-)
+
+diff --git a/wp-content/themes/paradise/Paradise/colors/dark.css b/wp-content/themes/paradise/Paradise/colors/dark.css
+index 8cfd631..db57327 100644
+--- a/wp-content/themes/paradise/Paradise/colors/dark.css
++++ b/wp-content/themes/paradise/Paradise/colors/dark.css
+@@ -140,10 +140,16 @@ a:hover.comment-reply-link	{
+ 				}
+ 
+ /* ========== STYLED ELEMENTS ========== */
+-
+-img:hover.pic	{
++.pic, .avatar, .flickr img {
++	-webkit-transition:background-color 0.2s;
++	-moz-transition:background-color 0.2s;
++	-o-transition:background-color 0.2s;
++	transition:background-color 0.2s;
++}
++a:hover img.pic, a:hover img.avatar, .flickr:hover img	{
+ 				background:#363a3e;
+ 				border:1px solid #0579af;
++
+ 				}
+ 				
+ /* ---- Pagination ---- */
+diff --git a/wp-content/themes/paradise/Paradise/header.php b/wp-content/themes/paradise/Paradise/header.php
+index fad3b4f..c0c47db 100644
+--- a/wp-content/themes/paradise/Paradise/header.php
++++ b/wp-content/themes/paradise/Paradise/header.php
+@@ -33,7 +33,6 @@
+ 	?></title>
+ 
+ 	<?php wp_enqueue_style("css_dark")	?>
+-	<?php wp_enqueue_style('css_ddsmoothmenu'); ?>
+ 	<?php wp_enqueue_style('css_tipsy'); ?>
+ 	<?php wp_enqueue_style('css_custom'); ?>
+ 
+@@ -42,9 +41,6 @@
+ 	<?php if (get_option('show_switcher')): ?>
+ 		<?php wp_enqueue_script('js_style_switcher'); ?>
+ 	<?php endif; ?>
+-	<?php wp_enqueue_script('js_watermarkinput'); ?>
+-	<?php wp_enqueue_script('js_ddsmoothmenu'); ?>
+-	<?php wp_enqueue_script('jquery-color'); ?>
+ 	<?php wp_enqueue_script('jquery-ui-tabs'); ?>
+ 	<?php wp_enqueue_script('js_tipsy'); ?>
+ 	<?php wp_enqueue_script('js_localscrol'); ?>
+diff --git a/wp-content/themes/paradise/Paradise/js/common.js b/wp-content/themes/paradise/Paradise/js/common.js
+index ce3d238..801620d 100644
+--- a/wp-content/themes/paradise/Paradise/js/common.js
++++ b/wp-content/themes/paradise/Paradise/js/common.js
+@@ -1,15 +1,19 @@
+ // Initial of dropdown menu
+-ddsmoothmenu.init({
+-	mainmenuid: "menu", //menu DIV id
+-	orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+-	classname: 'ddsmoothmenu', //class added to menu's outer DIV
+-	//customtheme: ["#1c5a80", "#18374a"],
+-	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+-})
+ 
+ jQuery(function($){
+-// watermark plugin
+-	$("#s").Watermark("Search");
++// watermark
++	var $s = $('#s');
++	if ($s.length) {
++		var t = 'Search';
++		$s.attr('title', t);
++		if ($s.val() == '') $s.val(t);
++		$s.focus(function() {
++			if ($s.val() == t) $s.val('');
++		})
++		.blur (function() {
++			if ($s.val() == '') $s.val(t);
++		})
++	}
+ // tipsy
+ 	$('.social a').tipsy(
+ 	{
+@@ -20,22 +24,7 @@ jQuery(function($){
+ });
+ 
+ jQuery(document).ready(function() {
+-// image fading plugin
+-	jQuery(".pic, .avatar, .flickr img").css({
+-		backgroundColor: "#fff",
+-		borderColor: "#D5D5D5"
+-	});
+-	jQuery(".pic, .avatar, .flickr img").hover(function() {
+-		jQuery(this).stop().animate({
+-			backgroundColor: "#666",
+-			borderColor: "#333"
+-		}, 300);
+-	},function() {
+-		jQuery(this).stop().animate({
+-			backgroundColor: "#fff",
+-			borderColor: "#D5D5D5"
+-		}, 500);
+-	});
++
+ // tabs
+ 	jQuery("#tabs").tabs({ fx: { height: 'toggle', opacity: 'toggle' } });
+ // code
+diff --git a/wp-content/themes/paradise/Paradise/stylesheets/styles.css b/wp-content/themes/paradise/Paradise/stylesheets/styles.css
+index 5af269a..a7789a7 100644
+--- a/wp-content/themes/paradise/Paradise/stylesheets/styles.css
++++ b/wp-content/themes/paradise/Paradise/stylesheets/styles.css
+@@ -2076,3 +2076,8 @@ ol.ordered li p	{
+ 				background:#474c52;
+ 				border:1px solid #2b3035;
+ 				}
++
++
++
++/*** changes by XBMC ****/
++#s:focus {color:#999 !important}
+-- 
+1.8.0.msysgit.0
+
