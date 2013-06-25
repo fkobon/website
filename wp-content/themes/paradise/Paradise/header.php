@@ -35,7 +35,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
 	<?php wp_enqueue_style("css_dark")	?>
 	<?php wp_enqueue_style('css_tipsy'); ?>
-	<?php wp_enqueue_style('css_custom'); ?>
 
 	<?php slider_enqueue(); ?>
 
