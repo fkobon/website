@@ -367,7 +367,7 @@ if( !class_exists('DonatePlus') ):
 			$bgcolor = array(0=>"white",1=>"#e5e5e5"); //background color for donor table
 			if( $donors && $title )
 				$output .= '<h2>'.$title.'</h2><br />';
-				$output .= '<table border=1><thead style="background-color:#60676F;"><tr><th style="padding:5px;color:white;width:20%;">Date</th><th style="color:white;width:20%;">Forum Name</th><th style="color:white;width:20%;">Donation</th><th style="color:white;width:40%">Comment</th></tr></thead>';
+				$output .= '<table border=0><thead style="background-color:#60676F;"><tr><th style="padding:5px;color:white;width:20%;">Date</th><th style="padding:5px;color:white;width:20%;">Forum Name</th><th style="padding:5px;color:white;width:20%;">Donation</th><th style="padding:5px;color:white;width:40%">Comment</th></tr></thead>';
 				$output .= '<tfoot style="background-color:#60676F;"><tr><th style="padding:5px;color:white">Date</th><th style="color:white;">Forum Name</th><th style="color:white;">Donation</th><th style="color:white;">Comment</th></tr></tfoot><tbody>';
 			foreach( $donors as $donor ):
 				$symbol = $currency[$donor->currency]['symbol'];
@@ -376,7 +376,7 @@ if( !class_exists('DonatePlus') ):
 				
 				$date = strtotime($donor->date);
 				$datetime = date('Y M j', $date);
-				$output .= '<tr bgcolor="'.$bgcolor[$a].'"><td style="padding-left:5px;">'.$datetime.'</td><td>'.$donor->name.'</td><td>'.$donation.'</td><td>'.nl2br($donor->comment).'</td></tr>';
+				$output .= '<tr bgcolor="'.$bgcolor[$a].'"><td style="padding-left:5px;">'.$datetime.'</td><td style="padding-left:5px;">'.$donor->name.'</td><td style="padding-left:5px;">'.$donation.'</td><td style="padding-left:5px;">'.nl2br($donor->comment).'</td></tr>';
 				$a = !$a; //flipping background color bit
 			endforeach;
 			$output .= '</tbody></table>';
