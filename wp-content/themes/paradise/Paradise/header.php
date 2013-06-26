@@ -32,19 +32,15 @@
 
 	?></title>
 
-	<?php enqueue_color_styles();	?>
-	<?php wp_enqueue_style('css_ddsmoothmenu'); ?>
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+	<?php wp_enqueue_style("css_dark")	?>
 	<?php wp_enqueue_style('css_tipsy'); ?>
-	<?php wp_enqueue_style('css_custom'); ?>
 
 	<?php slider_enqueue(); ?>
 
 	<?php if (get_option('show_switcher')): ?>
 		<?php wp_enqueue_script('js_style_switcher'); ?>
 	<?php endif; ?>
-	<?php wp_enqueue_script('js_watermarkinput'); ?>
-	<?php wp_enqueue_script('js_ddsmoothmenu'); ?>
-	<?php wp_enqueue_script('jquery-color'); ?>
 	<?php wp_enqueue_script('jquery-ui-tabs'); ?>
 	<?php wp_enqueue_script('js_tipsy'); ?>
 	<?php wp_enqueue_script('js_localscrol'); ?>

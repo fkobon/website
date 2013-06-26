@@ -1,0 +1,35 @@
+From 1c73403c5439848828045e9885c01a7b258fa777 Mon Sep 17 00:00:00 2001
+From: Franz Koch <franz.koch@elements-net.de>
+Date: Mon, 20 May 2013 17:11:13 +0200
+Subject: [PATCH 3/5] [Template] make post thumbnail clickable
+
+---
+ wp-content/themes/paradise/Paradise/loop-posts.php         | 2 +-
+ wp-content/themes/paradise/Paradise/stylesheets/styles.css | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/wp-content/themes/paradise/Paradise/loop-posts.php b/wp-content/themes/paradise/Paradise/loop-posts.php
+index adc294d..b3c3901 100644
+--- a/wp-content/themes/paradise/Paradise/loop-posts.php
++++ b/wp-content/themes/paradise/Paradise/loop-posts.php
+@@ -24,7 +24,7 @@
+ 					<!-- End Post Title -->
+ 					<?php if(has_post_thumbnail()): ?>
+ 					<!-- Post Thumbnail -->
+-					<div class="post_thumb"><?php the_post_thumbnail('blog', array('title' => false, 'class' => 'pic')); ?></div>
++					<a href="<?php the_permalink(); ?>" class="post_thumb"><?php the_post_thumbnail('blog', array('title' => false, 'class' => 'pic')); ?></a>
+ 					<!-- End Post Thumbnail -->
+ 					<?php endif; ?>
+ 					<!-- Post Excerpt -->
+diff --git a/wp-content/themes/paradise/Paradise/stylesheets/styles.css b/wp-content/themes/paradise/Paradise/stylesheets/styles.css
+index a7789a7..ade251f 100644
+--- a/wp-content/themes/paradise/Paradise/stylesheets/styles.css
++++ b/wp-content/themes/paradise/Paradise/stylesheets/styles.css
+@@ -2081,3 +2081,4 @@ ol.ordered li p	{
+ 
+ /*** changes by XBMC ****/
+ #s:focus {color:#999 !important}
++.post_thumb		{display:block; overflow:hidden;}
+-- 
+1.8.0.msysgit.0
+

@@ -4,11 +4,15 @@ function theme_get_color_styles(){
 	global $_theme_colors;
 	if (empty($_theme_colors)) {
 		$_theme_colors = array();
+/*
 		foreach(glob(get_theme_root() . '/' . get_template() . '/colors/*.css') as $color_file){
 			if(preg_match('/Style name: "(.*?)"/i', file_get_contents($color_file), $match)){
 				$_theme_colors[basename($color_file, ".css")] = trim($match[1]);
 			}
 		}
+*/
+		// we only need the dark theme, no need to include anything else
+		$_theme_colors['dark'] = 'Dark';
 	}
 	return $_theme_colors;
 }
@@ -28,7 +32,7 @@ function theme_color_styles() {
 		if ($color != $style_to_set) {
 			$wp_styles->registered["css_{$color}"]->add_data('alt', true);
 		}
-		$wp_styles->registered["css_{$color}"]->add_data('title', $color);
+		#$wp_styles->registered["css_{$color}"]->add_data('title', $color);
 	}
 }
 

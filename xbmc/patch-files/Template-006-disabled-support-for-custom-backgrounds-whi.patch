@@ -1,0 +1,38 @@
+From 67180cb8244dd2a9be7f5de505d6e5206e6f320c Mon Sep 17 00:00:00 2001
+From: Franz Koch <franz.koch@elements-net.de>
+Date: Tue, 25 Jun 2013 16:47:41 +0200
+Subject: [PATCH] [Template] disabled support for custom backgrounds which
+ triggered a second PHP request
+
+---
+ wp-content/themes/paradise/Paradise/header.php             | 1 -
+ wp-content/themes/paradise/Paradise/stylesheets/styles.css | 1 +
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/wp-content/themes/paradise/Paradise/header.php b/wp-content/themes/paradise/Paradise/header.php
+index e732ff4..8ab0057 100644
+--- a/wp-content/themes/paradise/Paradise/header.php
++++ b/wp-content/themes/paradise/Paradise/header.php
+@@ -35,7 +35,6 @@
+ 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+ 	<?php wp_enqueue_style("css_dark")	?>
+ 	<?php wp_enqueue_style('css_tipsy'); ?>
+-	<?php wp_enqueue_style('css_custom'); ?>
+ 
+ 	<?php slider_enqueue(); ?>
+ 
+diff --git a/wp-content/themes/paradise/Paradise/stylesheets/styles.css b/wp-content/themes/paradise/Paradise/stylesheets/styles.css
+index 2267829..6fa146d 100644
+--- a/wp-content/themes/paradise/Paradise/stylesheets/styles.css
++++ b/wp-content/themes/paradise/Paradise/stylesheets/styles.css
+@@ -2080,6 +2080,7 @@ ol.ordered li p	{
+ 
+ 
+ /*** changes by XBMC ****/
++body {font-family:Verdana,Geneva,Kalimati,sans-serif; background:url('../images/bg.jpg') #F4F5FF !important; }
+ h1, h2, h3, h4, h5, h6, .big_btn, a.big_btn, #f_sidebar h3, .error404, .s3sliderImage .title { font-family: 'MgOpen Modata', 'Source Sans Pro', 'Arial Narrow', Arial, Helvetica, sans-serif;}
+ #s:focus {color:#999 !important}
+ .post_thumb		{display:block; overflow:hidden;}
+-- 
+1.8.0.msysgit.0
+

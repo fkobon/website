@@ -1,0 +1,55 @@
+From 426090dd1caf819ae156b84e0a00fd3d7dfed61c Mon Sep 17 00:00:00 2001
+From: Franz Koch <franz.koch@elements-net.de>
+Date: Mon, 20 May 2013 16:32:16 +0200
+Subject: [PATCH 1/5] [Template] only include "dark" theme in page headers
+
+---
+ wp-content/themes/paradise/Paradise/functions/colors.php | 6 +++++-
+ wp-content/themes/paradise/Paradise/header.php           | 2 +-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/wp-content/themes/paradise/Paradise/functions/colors.php b/wp-content/themes/paradise/Paradise/functions/colors.php
+index 1c47ded..3cde2a9 100644
+--- a/wp-content/themes/paradise/Paradise/functions/colors.php
++++ b/wp-content/themes/paradise/Paradise/functions/colors.php
+@@ -4,11 +4,15 @@ function theme_get_color_styles(){
+ 	global $_theme_colors;
+ 	if (empty($_theme_colors)) {
+ 		$_theme_colors = array();
++/*
+ 		foreach(glob(get_theme_root() . '/' . get_template() . '/colors/*.css') as $color_file){
+ 			if(preg_match('/Style name: "(.*?)"/i', file_get_contents($color_file), $match)){
+ 				$_theme_colors[basename($color_file, ".css")] = trim($match[1]);
+ 			}
+ 		}
++*/
++		// we only need the dark theme, no need to include anything else
++		$_theme_colors['dark'] = 'Dark';
+ 	}
+ 	return $_theme_colors;
+ }
+@@ -28,7 +32,7 @@ function theme_color_styles() {
+ 		if ($color != $style_to_set) {
+ 			$wp_styles->registered["css_{$color}"]->add_data('alt', true);
+ 		}
+-		$wp_styles->registered["css_{$color}"]->add_data('title', $color);
++		#$wp_styles->registered["css_{$color}"]->add_data('title', $color);
+ 	}
+ }
+ 
+diff --git a/wp-content/themes/paradise/Paradise/header.php b/wp-content/themes/paradise/Paradise/header.php
+index 4386669..fad3b4f 100644
+--- a/wp-content/themes/paradise/Paradise/header.php
++++ b/wp-content/themes/paradise/Paradise/header.php
+@@ -32,7 +32,7 @@
+ 
+ 	?></title>
+ 
+-	<?php enqueue_color_styles();	?>
++	<?php wp_enqueue_style("css_dark")	?>
+ 	<?php wp_enqueue_style('css_ddsmoothmenu'); ?>
+ 	<?php wp_enqueue_style('css_tipsy'); ?>
+ 	<?php wp_enqueue_style('css_custom'); ?>
+-- 
+1.8.0.msysgit.0
+
