@@ -1,2 +1,8 @@
 User-agent: *
-Disallow: /
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/
+Disallow: /xmlrpc.php
+Disallow: /trackback/
+Disallow: /comment-page-
+Allow: /wp-content/uploads/
