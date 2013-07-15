@@ -29,7 +29,7 @@
 
 <?php if ( have_comments() ) : ?>
 				<!-- Start Commentlist -->
-				<h3><?php _e('Discussion', TEMPLATENAME); ?>&nbsp;-&nbsp;<?php printf( _n( 'One Comment', '%s Comments', get_comments_number(), TEMPLATENAME ), number_format_i18n( get_comments_number() ) );
+				<h3 id="comments"><?php _e('Discussion', TEMPLATENAME); ?>&nbsp;-&nbsp;<?php printf( _n( 'One Comment', '%s Comments', get_comments_number(), TEMPLATENAME ), number_format_i18n( get_comments_number() ) );
 				?></h3>
 
 <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
