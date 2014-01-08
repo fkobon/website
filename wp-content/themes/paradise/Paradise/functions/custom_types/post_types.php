@@ -260,9 +260,8 @@ if ( ! class_exists('SD_Register_Post_Type') ) {
 					$title_array = explode( $t_sep, $title );
 					$title = $prefix . implode( " $sep ", $title_array );
 				}
-
-				return $title;
 			}
+			return $title;
 		}
 
 

@@ -1,0 +1,28 @@
+From c4f220c3d450ecbf67408f14c517a470e831ec96 Mon Sep 17 00:00:00 2001
+From: Franz Koch <franz.koch@elements-net.de>
+Date: Wed, 8 Jan 2014 10:49:48 +0100
+Subject: [PATCH] [Template] fix missing post title in <title> tag of pages due
+ to a bug in the theme
+
+---
+ .../themes/paradise/Paradise/functions/custom_types/post_types.php     | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/wp-content/themes/paradise/Paradise/functions/custom_types/post_types.php b/wp-content/themes/paradise/Paradise/functions/custom_types/post_types.php
+index b6d2215..eee3f87 100644
+--- a/wp-content/themes/paradise/Paradise/functions/custom_types/post_types.php
++++ b/wp-content/themes/paradise/Paradise/functions/custom_types/post_types.php
+@@ -260,9 +260,8 @@ if ( ! class_exists('SD_Register_Post_Type') ) {
+ 					$title_array = explode( $t_sep, $title );
+ 					$title = $prefix . implode( " $sep ", $title_array );
+ 				}
+-
+-				return $title;
+ 			}
++			return $title;
+ 		}
+ 
+ 
+-- 
+1.8.4.msysgit.0
+
