@@ -1,0 +1,23 @@
+From 9b104de66ec0566e12c4ff118b6296dd1bd06546 Mon Sep 17 00:00:00 2001
+From: Franz Koch <da-anda@xbmc.org>
+Date: Tue, 27 May 2014 19:47:44 +0200
+Subject: [PATCH] [template] fix alignment of menu items and social media
+ buttons (too many menu items to fit)
+
+---
+ wp-content/themes/paradise/Paradise/stylesheets/styles.css | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/wp-content/themes/paradise/Paradise/stylesheets/styles.css b/wp-content/themes/paradise/Paradise/stylesheets/styles.css
+index 6fa146d..9a55386 100644
+--- a/wp-content/themes/paradise/Paradise/stylesheets/styles.css
++++ b/wp-content/themes/paradise/Paradise/stylesheets/styles.css
+@@ -2084,3 +2084,4 @@ body {font-family:Verdana,Geneva,Kalimati,sans-serif; background:url('../images/
+ h1, h2, h3, h4, h5, h6, .big_btn, a.big_btn, #f_sidebar h3, .error404, .s3sliderImage .title { font-family: 'MgOpen Modata', 'Source Sans Pro', 'Arial Narrow', Arial, Helvetica, sans-serif;}
+ #s:focus {color:#999 !important}
+ .post_thumb		{display:block; overflow:hidden;}
++#menu li { margin-right:3px; }
+\ No newline at end of file
+-- 
+1.8.4.msysgit.0
+
