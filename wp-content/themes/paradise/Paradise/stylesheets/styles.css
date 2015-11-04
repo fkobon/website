@@ -2085,3 +2085,4 @@ h1, h2, h3, h4, h5, h6, .big_btn, a.big_btn, #f_sidebar h3, .error404, .s3slider
 #s:focus {color:#999 !important}
 .post_thumb		{display:block; overflow:hidden;}
 #menu li { margin-right:3px; }
+#f_sidebar .sb_wrapper { overflow: hidden; }
